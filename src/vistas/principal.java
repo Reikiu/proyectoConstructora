@@ -21,6 +21,7 @@ public class principal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
     }
     empleado emp=new empleado();
+    RegistroUsuario usu=new RegistroUsuario();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +36,7 @@ public class principal extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,6 +57,14 @@ public class principal extends javax.swing.JFrame {
             }
         });
         fileMenu.add(openMenuItem);
+
+        jMenuItem1.setText("Registro Usuario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem1);
 
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
@@ -102,6 +112,17 @@ public class principal extends javax.swing.JFrame {
 	}       
     }//GEN-LAST:event_openMenuItemActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if(usu.isShowing())
+	{
+            JOptionPane.showMessageDialog(null,"La ventana ya esta abierta");
+	}else
+	{
+	desktopPane.add(usu);
+	usu.show();
+	}   
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -141,6 +162,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     // End of variables declaration//GEN-END:variables
