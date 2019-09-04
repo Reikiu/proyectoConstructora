@@ -24,7 +24,7 @@ public class Conexion {
     public boolean conectar(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hernandezibarradiazmartinezbaires", "root", "");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectoconstructora", "root", "");
             return true;
         } catch (SQLException |ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Error al conectar"+e.getMessage());
