@@ -12,13 +12,15 @@ package Entidades;
 public class Usuario {
     private String usuario;
     private String password;
+    private int tipoUsuario;
 
     public Usuario() {
     }
 
-    public Usuario(String usuario, String password) {
+    public Usuario(String usuario, String password, int tipoUsuario) {
         this.usuario = usuario;
         this.password = password;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public String getUsuario() {
@@ -36,6 +38,12 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
+    public int getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(int tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 }
