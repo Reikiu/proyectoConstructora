@@ -59,6 +59,10 @@ public class DaoCliente extends Conexion{
                 PreparedStatement pre = this.getCon().prepareStatement(sql);
                 pre.setInt(1, cli.getIdCliente());
             }
+            else if(var==JOptionPane.NO_OPTION){
+                JOptionPane.showConfirmDialog(null, "Operacion cancelada");
+            }
+                
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, "Error al intentar eliminar el "
                     + "registro.");
