@@ -6,10 +6,11 @@
 package Entidades;
 
 /**
- *
+ * 
  * @author aalej
  */
 public class Usuario {
+    private int idUsuario;
     private String usuario;
     private String password;
     private int tipoUsuario;
@@ -17,10 +18,19 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String usuario, String password, int tipoUsuario) {
+    public Usuario(int idUsuario, String usuario, String password, int tipoUsuario) {
+        this.idUsuario = idUsuario;
         this.usuario = usuario;
         this.password = password;
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getUsuario() {
