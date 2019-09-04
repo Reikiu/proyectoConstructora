@@ -20,6 +20,11 @@ public class DaoUsuario extends Conexion {
 
     List<Usuario> lstu = new ArrayList();
     
+    public List<Usuario> mostrarUsuario() throws Exception{
+        
+        return null;
+    }
+    
     public void insertarUsuario(Usuario us) throws Exception{
         try{
             this.conectar();
