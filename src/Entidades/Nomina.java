@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Entidades;
+
+/**
+ *
+ * @author aalej
+ */
+public class Nomina {
+    private int idNomina;
+    private int horasTrabajadas;
+    private int horasExtras;
+    private double sueldo;
+    private double anticipo;
+    private int idEmpleado;
+
+    public Nomina() {
+    }
+
+    public Nomina(int idNomina, int horasTrabajadas, int horasExtras, double sueldo, double anticipo, int idEmpleado) {
+        this.idNomina = idNomina;
+        this.horasTrabajadas = horasTrabajadas;
+        this.horasExtras = horasExtras;
+        this.sueldo = sueldo;
+        this.anticipo = anticipo;
+        this.idEmpleado = idEmpleado;
+    }
+
+    public int getIdNomina() {
+        return idNomina;
+    }
+
+    public void setIdNomina(int idNomina) {
+        this.idNomina = idNomina;
+    }
+
+    public int getHorasTrabajadas() {
+        return horasTrabajadas;
+    }
+
+    public void setHorasTrabajadas(int horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
+    }
+
+    public int getHorasExtras() {
+        return horasExtras;
+    }
+
+    public void setHorasExtras(int horasExtras) {
+        this.horasExtras = horasExtras;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public double getAnticipo() {
+        return anticipo;
+    }
+
+    public void setAnticipo(double anticipo) {
+        this.anticipo = anticipo;
+    }
+
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+    
+    
+}
