@@ -5,6 +5,7 @@ package Entidades;
  * @author ang14ped16
  */
 public class DetalleMaquinaria {
+
     private int idProyecto;
     private int idMaquinaria;
     private int cantidad;
@@ -41,7 +42,5 @@ public class DetalleMaquinaria {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    
-    
-    
+
 }
