@@ -6,8 +6,9 @@
 package Entidades;
 
 /**
- * 
- * @author aalej
+ * Clase: Usuario. (Para registrar Usuarios)
+ * Fecha: 03/09/2019
+ * @author Amilcar Hernandez
  */
 public class Usuario {
     private int idUsuario;

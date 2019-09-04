@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Entidades;
 
 /**
- *
- * @author aalej
+ * Clase: Nomina. (Para nomina de emplados)
+ * Fecha: 03/09/2019
+ * @author Amilcar Hernandez
  */
 public class Nomina {
     private int idNomina;
