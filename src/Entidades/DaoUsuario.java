@@ -33,4 +33,5 @@ public class DaoUsuario extends Conexion {
             JOptionPane.showMessageDialog(null, e.toString());
         }
     }
+    
 }
