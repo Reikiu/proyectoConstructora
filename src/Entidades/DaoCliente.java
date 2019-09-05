@@ -29,7 +29,8 @@ public class DaoCliente extends Conexion{
             pre.setString(5, cli.getFechaNacimiento());
             pre.setString(6, cli.getTelefono());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar Cliente");
+            JOptionPane.showMessageDialog(null, "Error al insertar Cliente"
+                    +e.getMessage());
         }
     }
     public void modificarCliente(Cliente cli) throws Exception{
@@ -45,7 +46,8 @@ public class DaoCliente extends Conexion{
             pre.setString(5, cli.getTelefono());
             pre.setInt(6, cli.getIdCliente());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al modificar Cliente");
+            JOptionPane.showMessageDialog(null, "Error al modificar Cliente"+
+                    e.getMessage());
         }
     }
     public void eliminarCliente(Cliente cli) throws Exception{
@@ -65,7 +67,7 @@ public class DaoCliente extends Conexion{
                 
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, "Error al intentar eliminar el "
-                    + "registro.");
+                    + "registro."+e.getMessage());
         }
     }
     
