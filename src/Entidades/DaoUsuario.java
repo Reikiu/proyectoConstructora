@@ -30,7 +30,7 @@ public class DaoUsuario extends Conexion {
             this.conectar();
             String sql = "INSERT into usuario values (?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setInt(1, us.getIdUsuario());
+            pre.setInt(1, Integer.parseInt(""));
             pre.setString(2, us.getUsuario());
             pre.setString(3, us.getPassword());
             pre.setInt(4, us.getTipoUsuario());
