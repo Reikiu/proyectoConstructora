@@ -28,6 +28,7 @@ public class DaoCliente extends Conexion{
             pre.setString(4, cli.getDui());
             pre.setString(5, cli.getFechaNacimiento());
             pre.setString(6, cli.getTelefono());
+            pre.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al insertar Cliente"
                     +e.getMessage());
@@ -45,6 +46,7 @@ public class DaoCliente extends Conexion{
             pre.setString(4, cli.getFechaNacimiento());
             pre.setString(5, cli.getTelefono());
             pre.setInt(6, cli.getIdCliente());
+            pre.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar Cliente"+
                     e.getMessage());
@@ -60,6 +62,7 @@ public class DaoCliente extends Conexion{
                 String sql = "delete from cliente where idCliente='?'";
                 PreparedStatement pre = this.getCon().prepareStatement(sql);
                 pre.setInt(1, cli.getIdCliente());
+                pre.executeUpdate();
             }
             else if(var==JOptionPane.NO_OPTION){
                 JOptionPane.showConfirmDialog(null, "Operacion cancelada");
