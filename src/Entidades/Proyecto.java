@@ -14,13 +14,13 @@ public class Proyecto {
     private int montoEmpleado;
     private String direccion;
     private int montoMaquinaria;
-    private int montoMateia;
+    private int montoMaterial;
     private double montoTotal;
 
     public Proyecto() {
     }
 
-    public Proyecto(int idProyecto, int idCliente, String nombre, int factura, String estadoProyecto, String fechaInicio, String fechaFin, int montoEmpleado, String direccion, int montoMaquinaria, int montoMateia, double montoTotal) {
+    public Proyecto(int idProyecto, int idCliente, String nombre, int factura, String estadoProyecto, String fechaInicio, String fechaFin, int montoEmpleado, String direccion, int montoMaquinaria, int montoMaterial, double montoTotal) {
         this.idProyecto = idProyecto;
         this.idCliente = idCliente;
         this.nombre = nombre;
@@ -31,7 +31,7 @@ public class Proyecto {
         this.montoEmpleado = montoEmpleado;
         this.direccion = direccion;
         this.montoMaquinaria = montoMaquinaria;
-        this.montoMateia = montoMateia;
+        this.montoMaterial = montoMaterial;
         this.montoTotal = montoTotal;
     }
 
@@ -115,12 +115,12 @@ public class Proyecto {
         this.montoMaquinaria = montoMaquinaria;
     }
 
-    public int getMontoMateia() {
-        return montoMateia;
+    public int getMontoMaterial() {
+        return montoMaterial;
     }
 
-    public void setMontoMateia(int montoMateia) {
-        this.montoMateia = montoMateia;
+    public void setMontoMaterial(int montoMaterial) {
+        this.montoMaterial = montoMaterial;
     }
 
     public double getMontoTotal() {
@@ -130,6 +130,6 @@ public class Proyecto {
     public void setMontoTotal(double montoTotal) {
         this.montoTotal = montoTotal;
     }
-    
+
     
 }

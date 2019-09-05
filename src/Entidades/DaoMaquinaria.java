@@ -3,6 +3,7 @@ package Entidades;
 import Conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -51,6 +52,27 @@ public class DaoMaquinaria extends Conexion{
                     
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }
+    
+    public void eliminarMaquinaria(Maquinaria ma) throws Exception{
+        try {
+            int var= JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el "
+                    + "registro?", "Confirmacion", JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE);
+            if (var == JOptionPane.YES_OPTION) {
+                this.conectar();
+                String sql = "delete from maquinaria where idMaquinaria='?'";
+                PreparedStatement pre = this.getCon().prepareStatement(sql);
+                pre.setInt(1, ma.getIdMaquinaria());
+            }
+            else if(var==JOptionPane.NO_OPTION){
+                JOptionPane.showConfirmDialog(null, "Operacion cancelada");
+            }
+                
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, "Error al intentar eliminar el "
+                    + "registro.");
         }
     }
 }
