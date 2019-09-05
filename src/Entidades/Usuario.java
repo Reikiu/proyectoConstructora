@@ -11,7 +11,7 @@ package Entidades;
  * @author Amilcar Hernandez
  */
 public class Usuario {
-    private int idUsuario;
+    private int idUsuario =0;
     private String usuario;
     private String password;
     private int tipoUsuario;

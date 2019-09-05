@@ -5,6 +5,14 @@
  */
 package vistas;
 
+import Entidades.DaoUsuario;
+import Entidades.Usuario;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HP
@@ -16,6 +24,32 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
      */
     public RegistroUsuario() {
         initComponents();
+        tablaUsuario();
+    }
+    Usuario us = new Usuario();
+    DaoUsuario daous = new DaoUsuario();
+    
+    public void tablaUsuario(){
+        String [] columnas = {"Id","Nombre","Contraseña","Tipo"};
+        Object[] obj = new Object[4];
+        DefaultTableModel tabla = new DefaultTableModel(null, columnas);
+        List ls;
+        try{
+            ls = daous.mostrarUsuario();
+            for(int i = 0; i<ls.size();i++){
+                us = (Usuario) ls.get(i);
+                obj[0]=us.getIdUsuario();
+                obj[1]=us.getUsuario();
+                obj[2]=us.getPassword();
+                obj[3]=us.getTipoUsuario();
+                tabla.addRow(obj);
+                //JOptionPane.showMessageDialog(null, "Ok");
+            }
+            ls= daous.mostrarUsuario();
+            this.tablaUsuario.setModel(tabla);
+        }catch(Exception e){
+           JOptionPane.showMessageDialog(null, "No ok "+e.toString());
+        }
     }
 
     /**
@@ -62,10 +96,15 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 102));
         jLabel4.setText("Tipo usuario:");
 
-        cmbTipousu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar.....", "Administrador", "Usuario", " " }));
+        cmbTipousu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar....", "Administrador", "Usuario" }));
 
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
         btnModificar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -75,6 +114,11 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,25 +132,29 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
                         .addGap(36, 36, 36)
                         .addComponent(txtPassword))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnEliminar))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(btnModificar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(46, 46, 46)
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnGuardar)
-                                    .addComponent(btnEliminar))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnModificar))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cmbTipousu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbTipousu, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -213,6 +261,32 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+            crearUsuario();
+        } catch (Exception e) {
+          //  JOptionPane.showMessageDialog(null, "Error "+e.toString());
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    public void crearUsuario() throws Exception {
+        us.setUsuario(this.txtNombre.getText());
+        us.setPassword(this.txtPassword.getText());
+        us.setTipoUsuario(this.cmbTipousu.getSelectedIndex());
+        daous.insertarUsuario(us);
+        limpiar();
+    }
+    
+    public void limpiar(){
+        this.txtNombre.setText("");
+        this.txtPassword.setText("");
+        this.cmbTipousu.setSelectedIndex(0);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

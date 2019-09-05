@@ -8,6 +8,7 @@ package Entidades;
 import Conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,24 +19,48 @@ import javax.swing.JOptionPane;
  */
 public class DaoUsuario extends Conexion {
 
-    List<Usuario> lstu = new ArrayList();
+    
     
     public List<Usuario> mostrarUsuario() throws Exception{
+        ResultSet rs;
+        List<Usuario> lstu = new ArrayList();
         
-        return null;
-    }
-    
-    public void insertarUsuario(Usuario us) throws Exception{
         try{
             this.conectar();
-            String sql = "INSERT into usuario values (?,?,?,?)";
+            String sql = "Select * from usuario";
+            PreparedStatement pst= this.getCon().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                Usuario us = new Usuario();
+                us.setIdUsuario(rs.getInt("idUsuario"));
+                us.setUsuario(rs.getString("usuario"));
+                us.setPassword(rs.getString("password"));
+                us.setTipoUsuario(rs.getInt("idTipo"));
+                lstu.add(us);
+            }
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(null, "Error "+e.toString());
+        }finally{
+            this.desconectar();
+        }
+        return lstu;
+    }
+    
+    public void insertarUsuario(Usuario us){
+        try{
+            this.conectar();
+            String sql = "insert into usuario values (?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setInt(1, Integer.parseInt(""));
+            pre.setInt(1, us.getIdUsuario());
             pre.setString(2, us.getUsuario());
             pre.setString(3, us.getPassword());
             pre.setInt(4, us.getTipoUsuario());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.toString());
+            pre.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario ingresado correctamente");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "ERROR "+e.toString()+" pendejo");
+        }finally{
+            this.desconectar();
         }
     }
     
