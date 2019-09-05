@@ -29,7 +29,7 @@ public class DaoNomina extends Conexion{
             pre.setDouble(5, no.getAnticipo());
             pre.setInt(6, no.getIdEmpleado());
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al ingresar Nomina");
+            JOptionPane.showMessageDialog(null, "Error al ingresar Nomina"+e.getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ public class DaoNomina extends Conexion{
             pre.setInt(6, no.getIdNomina());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar datos de la"
-                    + " nomina");
+                    + " nomina"+e.getMessage());
         }
     }
     
@@ -68,7 +68,7 @@ public class DaoNomina extends Conexion{
             }
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, "Error al intentar eliminar el "
-                    + "registro.");
+                    + "registro."+e.getMessage());
         }
     }
     
