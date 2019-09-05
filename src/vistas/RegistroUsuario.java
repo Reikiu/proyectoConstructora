@@ -265,6 +265,7 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             crearUsuario();
+            tablaUsuario();
         } catch (Exception e) {
           //  JOptionPane.showMessageDialog(null, "Error "+e.toString());
         }
@@ -280,6 +281,7 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
         us.setTipoUsuario(this.cmbTipousu.getSelectedIndex());
         daous.insertarUsuario(us);
         limpiar();
+        
     }
     
     public void limpiar(){

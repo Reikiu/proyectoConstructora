@@ -5,13 +5,13 @@
  */
 package Entidades;
 
-import Conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import Conexion.Conexion;
+import java.sql.SQLException;
 
 /**
  *
@@ -19,18 +19,16 @@ import javax.swing.JOptionPane;
  */
 public class DaoUsuario extends Conexion {
 
-    
-    
-    public List<Usuario> mostrarUsuario() throws Exception{
+    public List<Usuario> mostrarUsuario() throws Exception {
         ResultSet rs;
         List<Usuario> lstu = new ArrayList();
-        
-        try{
+
+        try {
             this.conectar();
             String sql = "Select * from usuario";
-            PreparedStatement pst= this.getCon().prepareStatement(sql);
+            PreparedStatement pst = this.getCon().prepareStatement(sql);
             rs = pst.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Usuario us = new Usuario();
                 us.setIdUsuario(rs.getInt("idUsuario"));
                 us.setUsuario(rs.getString("usuario"));
@@ -38,30 +36,38 @@ public class DaoUsuario extends Conexion {
                 us.setTipoUsuario(rs.getInt("idTipo"));
                 lstu.add(us);
             }
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(null, "Error "+e.toString());
-        }finally{
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "Error " + e.toString());
+        } finally {
             this.desconectar();
         }
         return lstu;
     }
-    
-    public void insertarUsuario(Usuario us){
-        try{
+
+    public void insertarUsuario(Usuario us) throws SQLException {
+        try {
             this.conectar();
-            String sql = "insert into usuario values (?,?,?,?)";
-            PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setInt(1, us.getIdUsuario());
-            pre.setString(2, us.getUsuario());
-            pre.setString(3, us.getPassword());
-            pre.setInt(4, us.getTipoUsuario());
-            pre.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario ingresado correctamente");
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "ERROR "+e.toString()+" pendejo");
-        }finally{
-            this.desconectar();
+            ResultSet rs1;
+            String sql1 = "Select * from usuario";
+            PreparedStatement pst1 = this.getCon().prepareStatement(sql1);
+            rs1 = pst1.executeQuery();
+            int i = 0;
+            while (rs1.next()) {
+                if (rs1.getInt("idUsuario") > i) {
+                    i = rs1.getInt("idUsuario");
+                }
+            }
+            i = i + 1;
+            String sql = "Insert into usuario values (?,?,?,?)";
+            PreparedStatement pst = this.getCon().prepareStatement(sql);
+            pst.setInt(1, i);
+            pst.setString(2, us.getUsuario());
+            pst.setString(3, us.getPassword());
+            pst.setInt(4, us.getTipoUsuario());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Oc");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.toString());
         }
     }
-    
 }
