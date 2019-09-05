@@ -22,6 +22,8 @@ public class principal extends javax.swing.JFrame {
     }
     empleado emp=new empleado();
     RegistroUsuario usu=new RegistroUsuario();
+    material mat=new material();
+    nomina nomi=new nomina();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +40,8 @@ public class principal extends javax.swing.JFrame {
         openMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +78,22 @@ public class principal extends javax.swing.JFrame {
             }
         });
         fileMenu.add(exitMenuItem);
+
+        jMenuItem2.setText("Material");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem2);
+
+        jMenuItem3.setText("Nomina");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem3);
 
         menuBar.add(fileMenu);
 
@@ -123,6 +143,28 @@ public class principal extends javax.swing.JFrame {
 	}   
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if(mat.isShowing())
+	{
+            JOptionPane.showMessageDialog(null,"La ventana ya esta abierta");
+	}else
+	{
+	desktopPane.add(mat);
+	mat.show();
+	}   
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       if(nomi.isShowing())
+	{
+            JOptionPane.showMessageDialog(null,"La ventana ya esta abierta");
+	}else
+	{
+	desktopPane.add(nomi);
+	nomi.show();
+	}   
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -163,6 +205,8 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     // End of variables declaration//GEN-END:variables

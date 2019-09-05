@@ -57,15 +57,15 @@ public class empleado extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 102));
         jLabel2.setText("Nombre: ");
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 102));
         jLabel3.setText("Codigo:");
 
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 102));
         jLabel4.setText("Direccion:");
 
@@ -75,24 +75,24 @@ public class empleado extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 102));
         jLabel5.setText("Telefono:");
 
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 102));
         jLabel7.setText("Sexo:");
 
-        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
         jLabel8.setText("Puesto:");
 
-        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 102));
         jLabel9.setText("Fecha Contratacion");
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Registrar Empleado");
 
         jRadioButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -208,22 +208,22 @@ public class empleado extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton5.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 102, 102));
         jButton5.setText("Limpiar");
         jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton4.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 102, 102));
         jButton4.setText("Eliminar");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton2.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("Modificar");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 102, 102));
         jButton1.setText("Guardar");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
