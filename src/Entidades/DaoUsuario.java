@@ -74,18 +74,8 @@ public class DaoUsuario extends Conexion {
     public void modificarUsuario(Usuario us) throws SQLException {
         try {
             this.conectar();
-            ResultSet rs1;
-            String sql1 = "Select * from usuario";
-            PreparedStatement pst1 = this.getCon().prepareStatement(sql1);
-            rs1 = pst1.executeQuery();
-            int i = 0;
-            while (rs1.next()) {
-                if (rs1.getInt("idUsuario") > i) {
-                    i = rs1.getInt("idUsuario");
-                }
-            }
-            i = i + 1;
-            String sql = "Update usuario set usuario=?,password=?,idTipo=? where idUsuario=?";
+            
+                String sql = "Update usuario set usuario=?,password=?,idTipo=? where idUsuario=?";
             PreparedStatement pst = this.getCon().prepareStatement(sql);
             pst.setInt(4, us.getIdUsuario());
             pst.setString(1, us.getUsuario());
