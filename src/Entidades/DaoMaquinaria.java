@@ -43,9 +43,20 @@ public class DaoMaquinaria extends Conexion{
     public void insertarMaquinaria(Maquinaria ma) throws Exception{
         try{
             this.conectar();
+            ResultSet rs1;
+            String sql1 = "Select * from maquinaria";
+            PreparedStatement pst1 = this.getCon().prepareStatement(sql1);
+            rs1 = pst1.executeQuery();
+            int i = 0;
+            while (rs1.next()) {
+                if (rs1.getInt("idMaquinaria") > i) {
+                    i = rs1.getInt("idMaquinaria");
+                }
+            }
+            i = i + 1;
             String sql = "INSERT into maquinaria values (?,?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setInt(1, ma.getIdMaquinaria());
+            pre.setInt(1, i);
             pre.setString(2, ma.getNombreMaquinaria());
             pre.setString(3, ma.getTipoMaquinaria());
             pre.setString(4, ma.getModelo());
