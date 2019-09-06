@@ -2,7 +2,10 @@ package vistas;
 
 import Entidades.DaoProyecto;
 import Entidades.Proyecto;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -423,11 +426,16 @@ public class proyecto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        try {
+            modificar();
+        } catch (SQLException ex) {
+            Logger.getLogger(proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tablaProyecto();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -440,7 +448,6 @@ public class proyecto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public void crearProyecto() throws Exception {
-        pro.setIdProyecto(Integer.parseInt(this.txtIdProyecto.getText()));
         pro.setIdCliente(this.txtIdCliente.getSelectedIndex());
         pro.setNombre(this.txtNombre.getText());
         pro.setFactura(Integer.parseInt(this.txtFactura.getText()));
@@ -465,9 +472,30 @@ public class proyecto extends javax.swing.JInternalFrame {
         this.txtFactura.setText("");
         this.txtEstado.setText("");
         this.txtFechaIN.setText("");
+        this.txtFechaFin.setText("");
+        this.txtMontoEmpleado.setText("");
+        this.MontoMaquinaria.setText("");
+        this.txtMatUti.setSelectedIndex(0);
+        this.txtMontoMat.setText("");
+        this.txtMontoTotal.setText("");
+        this.txtDireccion.setText("");
     }
     
-    
+    public void modificar() throws SQLException {
+        pro.setIdCliente(this.txtIdCliente.getSelectedIndex());
+        pro.setNombre(this.txtNombre.getText());
+        pro.setFactura(Integer.parseInt(this.txtFactura.getText()));
+        pro.setEstadoProyecto(this.txtEstado.getText());
+        pro.setFechaInicio(this.txtFechaIN.getText());
+        pro.setFechaFin(this.txtFechaFin.getText());
+        pro.setMontoEmpleado(Integer.parseInt(this.txtMontoEmpleado.getText()));
+        pro.setMontoMaquinaria(Integer.parseInt(this.MontoMaquinaria.getText()));
+        pro.setMat_uti(this.txtMatUti.getSelectedIndex());
+        pro.setMontoMaterial(Integer.parseInt(this.txtMontoMat.getText()));
+        pro.setMontoTotal(Double.parseDouble(this.txtMontoTotal.getText()));
+        pro.setDireccion(this.txtDireccion.getText());
+        daopro.modificarProyecto(pro);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
