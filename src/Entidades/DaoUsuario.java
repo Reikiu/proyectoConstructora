@@ -70,4 +70,40 @@ public class DaoUsuario extends Conexion {
             JOptionPane.showMessageDialog(null, "Error " + e.toString());
         }
     }
+    
+    public void modificarUsuario(Usuario us) throws SQLException {
+        try {
+            this.conectar();
+            ResultSet rs1;
+            String sql1 = "Select * from usuario";
+            PreparedStatement pst1 = this.getCon().prepareStatement(sql1);
+            rs1 = pst1.executeQuery();
+            int i = 0;
+            while (rs1.next()) {
+                if (rs1.getInt("idUsuario") > i) {
+                    i = rs1.getInt("idUsuario");
+                }
+            }
+            i = i + 1;
+            String sql = "Update usuario set usuario=?,password=?,idTipo=? where idUsuario=?";
+            PreparedStatement pst = this.getCon().prepareStatement(sql);
+            pst.setInt(4, us.getIdUsuario());
+            pst.setString(1, us.getUsuario());
+            pst.setString(2, us.getPassword());
+            pst.setInt(3, us.getTipoUsuario());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Oc");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.toString());
+        }
+    }
+    public void eliminarUsuario(Usuario us){
+        try{
+            String sql = "Delete from usuario where id=?";
+            PreparedStatement pst = this.getCon().prepareStatement(sql);
+            pst.setInt(1, us.getIdUsuario());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al borrar "+e.toString()+" pendejo");
+        }
+    }
 }
