@@ -53,6 +53,8 @@ public class maquinaria extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No ok " + e.toString());
         }
     }
+    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.

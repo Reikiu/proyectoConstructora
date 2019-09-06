@@ -43,6 +43,33 @@ public class DaoUsuario extends Conexion {
         }
         return lstu;
     }
+    
+    ////prueba 
+    public boolean buscarUsuario(String usuario,String pass){
+        boolean logeado=false;
+        try {        
+    this.conectar();
+    String SQL="select * from usuario where usuario=?  and password=?";
+    PreparedStatement ps=this.getCon().prepareStatement(SQL);
+    ps.setString(1, usuario);
+    ps.setString(2, pass);
+    
+    ResultSet rs=ps.executeQuery();
+    
+    
+    while(rs.next()){   
+      
+         logeado=true;
+        
+        
+   
+    }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e);
+        }
+    return logeado;
+    
+    }
 
     public void insertarUsuario(Usuario us) throws SQLException {
         try {
@@ -98,5 +125,37 @@ public class DaoUsuario extends Conexion {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al borrar "+e.toString()+" pendejo");
         }
+    }
+    
+    //tipo usuario
+      public String tipousuario(String usuario,String pass){
+    
+     try {        
+    this.conectar();
+    String SQL="select idTipo from usuario where usuario=?  and password=?";
+    PreparedStatement ps=this.getCon().prepareStatement(SQL);
+    ps.setString(1, usuario);
+    ps.setString(2, pass);
+    
+    ResultSet rs=ps.executeQuery();
+    
+    String tipo;
+    while(rs.next()){   
+        if(rs.getObject("idTipo").equals(1))       {
+        
+        tipo="1";
+        return tipo;
+        }  
+         if(rs.getObject("idTipo").equals(2))       {
+        
+        tipo="2";
+        return tipo;
+        }  
+    }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error"+e);
+        }
+     
+    return "Exito";
     }
 }
