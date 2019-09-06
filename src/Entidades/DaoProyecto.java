@@ -32,6 +32,7 @@ public class DaoProyecto extends Conexion {
                 pro.setMontoEmpleado(rs.getInt("montoEmpleados"));
                 pro.setDireccion(rs.getString("direccion"));
                 pro.setMontoMaquinaria(rs.getInt("montoMaquinaria"));
+                pro.setMat_uti(rs.getInt("mat_uti"));
                 pro.setMontoMaterial(rs.getInt("montoMateria"));
                 pro.setMontoTotal(rs.getDouble("montoTotal"));
                 lista.add(pro);
@@ -58,7 +59,7 @@ public class DaoProyecto extends Conexion {
                 }
             }
             i = i + 1;
-            String sql = "INSERT into proyecto values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT into proyecto values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setInt(1, i);
             pre.setInt(2, pro.getIdCliente());
@@ -70,8 +71,9 @@ public class DaoProyecto extends Conexion {
             pre.setInt(8, pro.getMontoEmpleado());
             pre.setString(9, pro.getDireccion());
             pre.setInt(10, pro.getMontoMaquinaria());
-            pre.setInt(11, pro.getMontoMaterial());
-            pre.setDouble(12, pro.getMontoTotal());
+            pre.setInt(11, pro.getMat_uti());
+            pre.setInt(12, pro.getMontoMaterial());
+            pre.setDouble(13, pro.getMontoTotal());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -83,7 +85,7 @@ public class DaoProyecto extends Conexion {
             String sql = "UPDATE proyecto set idCliente='?',nombre='?',"
                     + "factura='?',estadoProyecto='?',fechaInicio='?',"
                     + "fechaFin='?',montoEmpleados='?',direccion='?',"
-                    + "montoMaquinaria='?',montoMateria='?',montoTotal='?' "
+                    + "montoMaquinaria='?',montoMateria='?',mat_uti='?',montoTotal='?' "
                     + "WHERE idProyecto='?'";
             
             PreparedStatement pre = this.getCon().prepareStatement(sql);
@@ -96,9 +98,10 @@ public class DaoProyecto extends Conexion {
             pre.setInt(7, pro.getMontoEmpleado());
             pre.setString(8, pro.getDireccion());
             pre.setInt(9, pro.getMontoMaquinaria());
-            pre.setInt(110, pro.getMontoMaterial());
-            pre.setDouble(11, pro.getMontoTotal());
-            pre.setInt(12, pro.getIdProyecto());
+            pre.setInt(10, pro.getMontoMaterial());
+            pre.setInt(11, pro.getMat_uti());
+            pre.setDouble(12, pro.getMontoTotal());
+            pre.setInt(13, pro.getIdProyecto());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }

@@ -24,8 +24,7 @@ public class DaoMateria extends Conexion {
             rs = pst.executeQuery();
             while(rs.next()){
                 MateriaPrima mat = new MateriaPrima();
-                mat.setIdMateria(rs.getInt("idMateria"));
-                mat.setMatUsado(rs.getNString("mat_utilizado"));
+                mat.setIdMateria(rs.getInt("idMaterial"));
                 mat.setNombre(rs.getString("nombre"));
                 mat.setPrecioUnitario(rs.getDouble("precioUnidad"));
                 mat.setExistencia(rs.getString("existencia"));
@@ -53,13 +52,12 @@ public class DaoMateria extends Conexion {
                 }
             }
             i = i + 1;
-            String sql = "INSERT into materiaprima values (?,?,?,?,?)";
+            String sql = "INSERT into materiaprima values (?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setInt(1, i);
-            pre.setString(2, mat.getMatUsado());
-            pre.setString(3, mat.getNombre());
-            pre.setDouble(4, mat.getPrecioUnitario());
-            pre.setString(5, mat.getExistencia());
+            pre.setString(2, mat.getNombre());
+            pre.setDouble(3, mat.getPrecioUnitario());
+            pre.setString(4, mat.getExistencia());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -72,11 +70,10 @@ public class DaoMateria extends Conexion {
                     + "WHERE idMaterial='?'";
             
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setString(1, mat.getMatUsado());
-            pre.setString(2, mat.getNombre());
-            pre.setDouble(3, mat.getPrecioUnitario());
-            pre.setString(4, mat.getExistencia());
-            pre.setInt(5, mat.getIdMateria());
+            pre.setString(1, mat.getNombre());
+            pre.setDouble(2, mat.getPrecioUnitario());
+            pre.setString(3, mat.getExistencia());
+            pre.setInt(4, mat.getIdMateria());
                     
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.toString());

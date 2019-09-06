@@ -4,6 +4,7 @@ package Entidades;
  * @author ang14ped16
  */
 public class Proyecto {
+
     private int idProyecto;
     private int idCliente;
     private String nombre;
@@ -14,13 +15,14 @@ public class Proyecto {
     private int montoEmpleado;
     private String direccion;
     private int montoMaquinaria;
+    private int mat_uti;
     private int montoMaterial;
     private double montoTotal;
 
     public Proyecto() {
     }
 
-    public Proyecto(int idProyecto, int idCliente, String nombre, int factura, String estadoProyecto, String fechaInicio, String fechaFin, int montoEmpleado, String direccion, int montoMaquinaria, int montoMaterial, double montoTotal) {
+    public Proyecto(int idProyecto, int idCliente, String nombre, int factura, String estadoProyecto, String fechaInicio, String fechaFin, int montoEmpleado, String direccion, int montoMaquinaria, int mat_uti, int montoMaterial, double montoTotal) {
         this.idProyecto = idProyecto;
         this.idCliente = idCliente;
         this.nombre = nombre;
@@ -31,6 +33,7 @@ public class Proyecto {
         this.montoEmpleado = montoEmpleado;
         this.direccion = direccion;
         this.montoMaquinaria = montoMaquinaria;
+        this.mat_uti = mat_uti;
         this.montoMaterial = montoMaterial;
         this.montoTotal = montoTotal;
     }
@@ -113,6 +116,14 @@ public class Proyecto {
 
     public void setMontoMaquinaria(int montoMaquinaria) {
         this.montoMaquinaria = montoMaquinaria;
+    }
+
+    public int getMat_uti() {
+        return mat_uti;
+    }
+
+    public void setMat_uti(int mat_uti) {
+        this.mat_uti = mat_uti;
     }
 
     public int getMontoMaterial() {

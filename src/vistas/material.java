@@ -29,7 +29,7 @@ public class material extends javax.swing.JInternalFrame {
 
     public void tablaMateria() {
         String[] columnas = {"Id", "Nombre", "Precio unidad", "Existencia"};
-        Object[] obj = new Object[5];
+        Object[] obj = new Object[4];
         DefaultTableModel tabla = new DefaultTableModel(null, columnas);
         List ls;
         try {
@@ -37,10 +37,9 @@ public class material extends javax.swing.JInternalFrame {
             for (int i = 0; i < ls.size(); i++) {
                 mat = (MateriaPrima) ls.get(i);
                 obj[0] = mat.getIdMateria();
-                obj[1] = mat.getMatUsado();
-                obj[2] = mat.getNombre();
-                obj[3] = mat.getPrecioUnitario();
-                obj[4] = mat.getExistencia();
+                obj[1] = mat.getNombre();
+                obj[2] = mat.getPrecioUnitario();
+                obj[3] = mat.getExistencia();
                 tabla.addRow(obj);
                 //JOptionPane.showMessageDialog(null, "Ok");
             }
