@@ -13,11 +13,30 @@ import javax.swing.JOptionPane;
  */
 public class DaoMateria extends Conexion {
 
-    List<MateriaPrima> lstu = new ArrayList();
-
-    public List<MateriaPrima> mostrarMateria() throws Exception {
-
-        return null;
+    public List<MateriaPrima> mostrarProyecto() throws Exception{
+        ResultSet rs;
+        List<MateriaPrima> list = new ArrayList();
+        
+        try{
+            this.conectar();
+            String sql = "Select * from usuario";
+            PreparedStatement pst= this.getCon().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                MateriaPrima mat = new MateriaPrima();
+                mat.setIdMateria(rs.getInt("idMateria"));
+                mat.setMatUsado(rs.getNString("mat_utilizado"));
+                mat.setNombre(rs.getString("nombre"));
+                mat.setPrecioUnitario(rs.getDouble("precioUnidad"));
+                mat.setExistencia(rs.getString("existencia"));
+                list.add(mat);
+            }
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(null, "Error "+e.toString());
+        }finally{
+            this.desconectar();
+        }
+        return list;
     }
 
     public void insertarMateria(MateriaPrima mat) throws Exception {

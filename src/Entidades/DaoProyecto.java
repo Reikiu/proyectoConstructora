@@ -11,11 +11,37 @@ import javax.swing.JOptionPane;
  * @author ang14ped16
  */
 public class DaoProyecto extends Conexion {
-     List<Proyecto> lstu = new ArrayList();
-
-    public List<Proyecto> mostrarMateria() throws Exception {
-
-        return null;
+     public List<Proyecto> mostrarProyecto() throws Exception{
+        ResultSet rs;
+        List<Proyecto> lista = new ArrayList();
+        
+        try{
+            this.conectar();
+            String sql = "Select * from usuario";
+            PreparedStatement pst= this.getCon().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                Proyecto pro = new Proyecto();
+                pro.setIdProyecto(rs.getInt("idProyecto"));
+                pro.setIdCliente(rs.getInt("idCliente"));
+                pro.setNombre(rs.getString("nombre"));
+                pro.setFactura(rs.getInt("factura"));
+                pro.setEstadoProyecto(rs.getString("estadoProyecto"));
+                pro.setFechaInicio(rs.getString("fechaInicio"));
+                pro.setFechaFin(rs.getString("fechaFin"));
+                pro.setMontoEmpleado(rs.getInt("montoEmpleados"));
+                pro.setDireccion(rs.getString("direccion"));
+                pro.setMontoMaquinaria(rs.getInt("montoMaquinaria"));
+                pro.setMontoMaterial(rs.getInt("montoMateria"));
+                pro.setMontoTotal(rs.getDouble("montoTotal"));
+                lista.add(pro);
+            }
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(null, "Error "+e.toString());
+        }finally{
+            this.desconectar();
+        }
+        return lista;
     }
     
     public void insertarProyeto(Proyecto pro) throws Exception {

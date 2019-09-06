@@ -12,11 +12,32 @@ import javax.swing.JOptionPane;
  * @author ang14ped16
  */
 public class DaoMaquinaria extends Conexion{
-    List<Maquinaria> lstu = new ArrayList();
-    
-    public List<Maquinaria> mostrarMaquinaria() throws Exception{
+
+    public List<Maquinaria> mostrarProyecto() throws Exception{
+        ResultSet rs;
+        List<Maquinaria> lis = new ArrayList();
         
-        return null;
+        try{
+            this.conectar();
+            String sql = "Select * from usuario";
+            PreparedStatement pst= this.getCon().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                Maquinaria ma = new Maquinaria();
+                ma.setIdMaquinaria(rs.getInt("idMateria"));
+                ma.setNombreMaquinaria(rs.getString("nombreMaquinaria"));
+                ma.setTipoMaquinaria(rs.getString("tipoMaquinaria"));
+                ma.setModelo(rs.getString("modelo"));
+                ma.setAnioAdquirido(rs.getInt("anioAdquirido"));
+                ma.setEstado(rs.getString("estado"));
+                lis.add(ma);
+            }
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(null, "Error "+e.toString());
+        }finally{
+            this.desconectar();
+        }
+        return lis;
     }
     
     public void insertarMaquinaria(Maquinaria ma) throws Exception{
