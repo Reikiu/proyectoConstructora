@@ -7,10 +7,12 @@ package vistas;
 
 import Entidades.DaoMaquinaria;
 import Entidades.Maquinaria;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author HP
@@ -54,7 +56,38 @@ public class maquinaria extends javax.swing.JInternalFrame {
         }
     }
     
-  
+  public void insertarMaquinaria() throws Exception{
+      ma.setNombreMaquinaria(this.txtNombre.getText());
+      ma.setIdMaquinaria(Integer.parseInt(this.txtCodigo.getText()));
+      ma.setModelo(this.txtModelo.getText());
+      ma.setTipoMaquinaria(this.txtTipo.getText());
+      ma.setAnioAdquirido(Integer.parseInt(this.txtAño.getText()));
+      daoma.insertarMaquinaria(ma);  
+      Limpiar();
+  }
+  public void Limpiar(){
+      this.txtAño.setText("");
+      this.txtCodigo.setText("");
+      this.txtModelo.setText("");
+      this.txtNombre.setText("");
+      this.txtTipo.setText("");
+  }
+  public void ModificarMaquinaria() throws SQLException{
+      try {
+            ma.setIdMaquinaria(Integer.parseInt(this.txtCodigo.getText()));
+            ma.setNombreMaquinaria(this.txtNombre.getText());
+            ma.setModelo(this.txtModelo.getText());
+            ma.setTipoMaquinaria(this.txtTipo.getText());
+            ma.setAnioAdquirido(Integer.parseInt(this.txtAño.getText()));
+            int SioNo = JOptionPane.showConfirmDialog(this, "Desea modificar al maquinaria?", "Modificar Carrera", JOptionPane.YES_NO_OPTION);
+            if (SioNo == 0) {
+                daoma.modificarMaquinaria(ma);
+                JOptionPane.showMessageDialog(rootPane, "maquinaria modificado con exito XD", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+        } catch (Exception e) {
+        }
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,6 +157,11 @@ public class maquinaria extends javax.swing.JInternalFrame {
         jButton1.setForeground(new java.awt.Color(0, 153, 153));
         jButton1.setText("Guardar");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 153, 153));
@@ -274,6 +312,24 @@ public class maquinaria extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // insertar datos
+        if ( txtCodigo.getText().length() == 0 || txtAño.getText().length() == 0 || txtAño.getText().length() == 0  || txtNombre.getText().length() == 0||txtModelo.getText().length() ==0 ) {
+            JOptionPane.showMessageDialog(null, "No se admiten campos vacios");
+        } else {
+            try {
+                insertarMaquinaria();
+           
+                ModificarMaquinaria();
+                tablaMaquinaria();
+                
+                Limpiar();
+            } catch (Exception ex) {
+                Logger.getLogger(maquinaria.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
