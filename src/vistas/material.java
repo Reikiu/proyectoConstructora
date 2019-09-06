@@ -7,7 +7,10 @@ package vistas;
 
 import Entidades.DaoMateria;
 import Entidades.MateriaPrima;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -49,6 +52,48 @@ public class material extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No ok " + e.toString());
         }
     }
+    
+    public void insertarMaterial() throws Exception {
+        mat.setNombre(this.txtNombre.getText());
+        mat.setPrecioUnitario(Double.parseDouble(this.txtPrecioUnidad.getText()));
+        mat.setExistencia(this.txtExistencia.getText());
+        daomat.insertarMateria(mat);
+        limpiar();
+        tablaMateria();
+    }
+    
+    public void limpiar() {
+        this.txtNombre.setText("");
+        this.txtPrecioUnidad.setText("");
+        this.txtExistencia.setText("");
+    }
+    
+    public void modificar() throws SQLException, Exception{
+        int fila=this.tablaMaterial.getSelectedRow();
+        mat.setIdMateria((int) this.tablaMaterial.getValueAt(fila, 0));
+        mat.setNombre(this.txtNombre.getText());
+        mat.setPrecioUnitario(Double.parseDouble(this.txtPrecioUnidad.getText()));
+        mat.setExistencia(this.txtExistencia.getText());
+        daomat.modificarMateria(mat);
+    }
+    
+    public void llenarTabla() {
+        try {
+            int fila = this.tablaMaterial.getSelectedRow();
+            mat.setIdMateria((int) this.tablaMaterial.getValueAt(fila, 0));
+            this.txtNombre.setText((String) this.tablaMaterial.getValueAt(fila, 1));
+            this.txtPrecioUnidad.setText((String) this.tablaMaterial.getValueAt(fila, 2));
+            this.txtExistencia.setText((String) this.tablaMaterial.getValueAt(fila, 3));
+        } catch (Exception e) {
+        }
+    }
+    
+    public void eliminar() throws SQLException, Exception {
+        int fila = this.tablaMaterial.getSelectedRow();
+        mat.setIdMateria((int) this.tablaMaterial.getValueAt(fila, 0));
+        daomat.eliminarMateria(mat);
+        limpiar();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,6 +121,10 @@ public class material extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMaterial = new javax.swing.JTable();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setForeground(new java.awt.Color(204, 204, 255));
@@ -138,6 +187,11 @@ public class material extends javax.swing.JInternalFrame {
         btnLimpiar.setForeground(new java.awt.Color(0, 102, 102));
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,6 +261,11 @@ public class material extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMaterialMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaMaterial);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -250,6 +309,49 @@ public class material extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        try {
+            // Boton Guardar
+            insertarMaterial();
+        } catch (Exception ex) {
+            Logger.getLogger(material.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tablaMateria();
+        limpiar();
+    }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
+        try {
+            // Boton modificar
+            modificar();
+        } catch (Exception ex) {
+            Logger.getLogger(material.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tablaMateria();
+        limpiar();
+    }//GEN-LAST:event_btnModificarMouseClicked
+
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+        try {
+            // Boton Eliminar
+            eliminar();
+        } catch (Exception ex) {
+            Logger.getLogger(material.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tablaMateria();
+        limpiar();
+    }//GEN-LAST:event_btnEliminarMouseClicked
+
+    private void tablaMaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMaterialMouseClicked
+        // Evento click en tabla
+        llenarTabla();
+    }//GEN-LAST:event_tablaMaterialMouseClicked
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // Boton Limpiar
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
