@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     nomina.`idNomina` AS nomina_idNomina,
+     nomina.`horasTrabajadas` AS nomina_horasTrabajadas,
+     nomina.`horasExtras` AS nomina_horasExtras,
+     nomina.`sueldo` AS nomina_sueldo,
+     nomina.`anticipo` AS nomina_anticipo,
+     nomina.`idEmpleado` AS nomina_idEmpleado,
+     empleado.`idEmpleado` AS empleado_idEmpleado,
+     empleado.`idProyecto` AS empleado_idProyecto,
+     empleado.`nombre` AS empleado_nombre,
+     empleado.`direccion` AS empleado_direccion,
+     empleado.`telefono` AS empleado_telefono,
+     empleado.`horario` AS empleado_horario,
+     empleado.`sexo` AS empleado_sexo,
+     empleado.`puesto` AS empleado_puesto,
+     empleado.`fechaContratacion` AS empleado_fechaContratacion
+FROM
+     `empleado` empleado INNER JOIN `nomina` nomina ON empleado.`idEmpleado` = nomina.`idEmpleado`]]>
+	</queryString>
+	<field name="nomina_idNomina" class="java.lang.Integer"/>
+	<field name="nomina_horasTrabajadas" class="java.lang.Integer"/>
+	<field name="nomina_horasExtras" class="java.lang.Integer"/>
+	<field name="nomina_sueldo" class="java.lang.Double"/>
+	<field name="nomina_anticipo" class="java.lang.Double"/>
+	<field name="nomina_idEmpleado" class="java.lang.Integer"/>
+	<field name="empleado_idEmpleado" class="java.lang.Integer"/>
+	<field name="empleado_idProyecto" class="java.lang.Integer"/>
+	<field name="empleado_nombre" class="java.lang.String"/>
+	<field name="empleado_direccion" class="java.lang.String"/>
+	<field name="empleado_telefono" class="java.lang.String"/>
+	<field name="empleado_horario" class="java.lang.String"/>
+	<field name="empleado_sexo" class="java.lang.String"/>
+	<field name="empleado_puesto" class="java.lang.String"/>
+	<field name="empleado_fechaContratacion" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="22" width="232" height="36" forecolor="#990000"/>
+				<textElement>
+					<font fontName="Arial Black" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Nomina]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="1" width="129" height="83"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Pictures\\web\\gama.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="54" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="2" width="106" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="2" width="100" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horas Trabajadas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="2" width="72" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horas Extras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="2" width="60" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sueldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="2" width="86" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anticipo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="21" width="531" height="1" forecolor="#990000"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="54" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nomina_idNomina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="2" width="106" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empleado_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="2" width="100" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nomina_horasTrabajadas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="2" width="72" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nomina_horasExtras}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="2" width="60" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nomina_sueldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="2" width="86" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nomina_anticipo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="22" width="531" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="10" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="217" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="309" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="11" splitType="Stretch"/>
+	</summary>
+</jasperReport>

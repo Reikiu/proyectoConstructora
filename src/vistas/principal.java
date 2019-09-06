@@ -27,6 +27,7 @@ public class principal extends javax.swing.JFrame {
     proyecto pro=new proyecto();
     maquinaria maq=new maquinaria();
     cliente cli=new cliente();
+    Reportes rpt=new Reportes();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -144,7 +145,14 @@ public class principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
+        if(rpt.isShowing())
+	{
+            JOptionPane.showMessageDialog(null,"La ventana ya esta abierta");
+	}else
+	{
+	desktopPane.add(rpt);
+	rpt.show();
+	}       
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void openMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openMenuItemMouseClicked

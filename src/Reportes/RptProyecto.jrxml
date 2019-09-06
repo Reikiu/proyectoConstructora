@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="0.8264462809917354"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     proyecto.`idProyecto` AS proyecto_idProyecto,
+     proyecto.`idCliente` AS proyecto_idCliente,
+     proyecto.`nombre` AS proyecto_nombre,
+     proyecto.`factura` AS proyecto_factura,
+     proyecto.`estadoProyecto` AS proyecto_estadoProyecto,
+     proyecto.`fechaInicio` AS proyecto_fechaInicio,
+     proyecto.`fechaFin` AS proyecto_fechaFin,
+     proyecto.`montoEmpleados` AS proyecto_montoEmpleados,
+     proyecto.`direccion` AS proyecto_direccion,
+     proyecto.`montoMaquinaria` AS proyecto_montoMaquinaria,
+     proyecto.`montoMateria` AS proyecto_montoMateria,
+     proyecto.`montoTotal` AS proyecto_montoTotal,
+     cliente.`idCliente` AS cliente_idCliente,
+     cliente.`nombre` AS cliente_nombre,
+     cliente.`direccion` AS cliente_direccion,
+     cliente.`dui` AS cliente_dui,
+     cliente.`fechaNacimiento` AS cliente_fechaNacimiento,
+     cliente.`telefono` AS cliente_telefono
+FROM
+     `cliente` cliente INNER JOIN `proyecto` proyecto ON cliente.`idCliente` = proyecto.`idCliente`]]>
+	</queryString>
+	<field name="proyecto_idProyecto" class="java.lang.Integer"/>
+	<field name="proyecto_idCliente" class="java.lang.Integer"/>
+	<field name="proyecto_nombre" class="java.lang.String"/>
+	<field name="proyecto_factura" class="java.lang.Integer"/>
+	<field name="proyecto_estadoProyecto" class="java.lang.String"/>
+	<field name="proyecto_fechaInicio" class="java.sql.Date"/>
+	<field name="proyecto_fechaFin" class="java.sql.Date"/>
+	<field name="proyecto_montoEmpleados" class="java.lang.Integer"/>
+	<field name="proyecto_direccion" class="java.lang.String"/>
+	<field name="proyecto_montoMaquinaria" class="java.lang.Integer"/>
+	<field name="proyecto_montoMateria" class="java.lang.Integer"/>
+	<field name="proyecto_montoTotal" class="java.lang.Double"/>
+	<field name="cliente_idCliente" class="java.lang.Integer"/>
+	<field name="cliente_nombre" class="java.lang.String"/>
+	<field name="cliente_direccion" class="java.lang.String"/>
+	<field name="cliente_dui" class="java.lang.String"/>
+	<field name="cliente_fechaNacimiento" class="java.sql.Date"/>
+	<field name="cliente_telefono" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="276" y="16" width="260" height="36" forecolor="#990000"/>
+				<textElement>
+					<font fontName="Arial Black" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Proyecto]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="702" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="-11" width="223" height="90"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Pictures\\web\\gama.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="37" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="0" width="50" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="0" width="56" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="0" width="56" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="0" width="58" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="0" width="74" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Fecha Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="0" width="57" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Fecha Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="0" width="91" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Monto Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="0" width="60" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="542" y="0" width="86" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Monto Maquinari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="628" y="0" width="74" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Monto Materia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="0" width="100" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Monto Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" forecolor="#990000"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="37" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_idProyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="0" width="50" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="0" width="56" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="0" width="51" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="0" width="58" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_estadoProyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="0" width="74" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_fechaInicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="331" y="0" width="57" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_fechaFin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="0" width="91" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_montoEmpleados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="391" y="0" width="60" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="542" y="0" width="86" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_montoMaquinaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="628" y="0" width="74" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_montoMateria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="0" width="100" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{proyecto_montoTotal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" forecolor="#000000"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="331" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="411" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="7" splitType="Stretch"/>
+	</summary>
+</jasperReport>

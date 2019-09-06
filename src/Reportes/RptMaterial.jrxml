@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     materiaprima.`idMaterial` AS materiaprima_idMaterial,
+     materiaprima.`mat_utilizado` AS materiaprima_mat_utilizado,
+     materiaprima.`nombre` AS materiaprima_nombre,
+     materiaprima.`precioUnidad` AS materiaprima_precioUnidad,
+     materiaprima.`existencia` AS materiaprima_existencia,
+     detallemateria.`idProyecto` AS detallemateria_idProyecto,
+     detallemateria.`idMaterial` AS detallemateria_idMaterial,
+     detallemateria.`cantidad` AS detallemateria_cantidad
+FROM
+     `materiaprima` materiaprima INNER JOIN `detallemateria` detallemateria ON materiaprima.`idMaterial` = detallemateria.`idMaterial`]]>
+	</queryString>
+	<field name="materiaprima_idMaterial" class="java.lang.Integer"/>
+	<field name="materiaprima_mat_utilizado" class="java.lang.String"/>
+	<field name="materiaprima_nombre" class="java.lang.String"/>
+	<field name="materiaprima_precioUnidad" class="java.lang.Double"/>
+	<field name="materiaprima_existencia" class="java.lang.String"/>
+	<field name="detallemateria_idProyecto" class="java.lang.Integer"/>
+	<field name="detallemateria_idMaterial" class="java.lang.Integer"/>
+	<field name="detallemateria_cantidad" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="145" y="20" width="310" height="59" forecolor="#990000"/>
+				<textElement>
+					<font fontName="Arial Black" size="22" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Material Prima]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="-12" width="145" height="91"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Pictures\\web\\gama.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="61" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="2" width="94" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="2" width="84" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="2" width="76" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Existencias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="2" width="100" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Material Utilizado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="2" width="68" height="20" forecolor="#006666"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="512" height="1" forecolor="#990000"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{materiaprima_idMaterial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="3" width="94" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{materiaprima_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="3" width="84" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{materiaprima_precioUnidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="3" width="76" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{materiaprima_existencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="3" width="100" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{materiaprima_mat_utilizado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="3" width="68" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{detallemateria_cantidad}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="23" width="512" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="209" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="289" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="10" splitType="Stretch"/>
+	</summary>
+</jasperReport>

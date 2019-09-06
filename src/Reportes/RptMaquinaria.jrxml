@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.1000000000000003"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     maquinaria.`idMaquinaria` AS maquinaria_idMaquinaria,
+     maquinaria.`nombreMaquinaria` AS maquinaria_nombreMaquinaria,
+     maquinaria.`tipoMaquinaria` AS maquinaria_tipoMaquinaria,
+     maquinaria.`modelo` AS maquinaria_modelo,
+     maquinaria.`anioAdquirido` AS maquinaria_anioAdquirido,
+     maquinaria.`estado` AS maquinaria_estado,
+     detallemaquinaria.`idProyecto` AS detallemaquinaria_idProyecto,
+     detallemaquinaria.`idMaquinaria` AS detallemaquinaria_idMaquinaria,
+     detallemaquinaria.`cantidad` AS detallemaquinaria_cantidad
+FROM
+     `maquinaria` maquinaria INNER JOIN `detallemaquinaria` detallemaquinaria ON maquinaria.`idMaquinaria` = detallemaquinaria.`idMaquinaria`]]>
+	</queryString>
+	<field name="maquinaria_idMaquinaria" class="java.lang.Integer"/>
+	<field name="maquinaria_nombreMaquinaria" class="java.lang.String"/>
+	<field name="maquinaria_tipoMaquinaria" class="java.lang.String"/>
+	<field name="maquinaria_modelo" class="java.lang.String"/>
+	<field name="maquinaria_anioAdquirido" class="java.lang.Integer"/>
+	<field name="maquinaria_estado" class="java.lang.String"/>
+	<field name="detallemaquinaria_idProyecto" class="java.lang.Integer"/>
+	<field name="detallemaquinaria_idMaquinaria" class="java.lang.Integer"/>
+	<field name="detallemaquinaria_cantidad" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="16" width="311" height="36" forecolor="#990000"/>
+				<textElement>
+					<font fontName="Arial Black" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Maquinari]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="126" height="79"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Pictures\\web\\gama.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="44" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="0" width="82" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="0" width="92" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Tipo maquinari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="0" width="76" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="0" width="84" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Año Adquirido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="0" width="76" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="87" height="20" forecolor="#006666"/>
+				<textElement/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" forecolor="#990000"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="126" y="0" width="92" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{maquinaria_tipoMaquinaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="44" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{maquinaria_idMaquinaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="87" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{detallemaquinaria_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="0" width="77" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{maquinaria_modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="76" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{maquinaria_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="2" width="82" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{maquinaria_nombreMaquinaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="0" width="84" height="20" forecolor="#003366"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{maquinaria_anioAdquirido}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="22" width="552" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="291" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="5" splitType="Stretch"/>
+	</summary>
+</jasperReport>
