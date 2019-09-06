@@ -8,6 +8,10 @@ package Entidades;
 
 import Conexion.Conexion;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  * Clase: DaoEmpleado ()
@@ -28,5 +32,27 @@ public class DaoEmpleado extends Conexion{
         pre.setString(7, emp.getPuesto());
         pre.setString(8, emp.getFechaContratacion());
         pre.executeUpdate();
+    }
+    
+    public List<Proyecto> mostrarCmbProyecto() throws Exception {
+        ResultSet rs;
+        List<Proyecto> lstu = new ArrayList();
+
+        try {
+            this.conectar();
+            String sql = "Select * from usuario";
+            PreparedStatement pst = this.getCon().prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Proyecto pro = new Proyecto();
+                pro.setNombre(rs.getString("nombre"));
+                lstu.add(pro);
+            }
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "Error " + e.toString());
+        } finally {
+            this.desconectar();
+        }
+        return lstu;
     }
 }
