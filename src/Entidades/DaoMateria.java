@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class DaoMateria extends Conexion {
 
-    public List<MateriaPrima> mostrarProyecto() throws Exception{
+    public List<MateriaPrima> mostrarMateria() throws Exception{
         ResultSet rs;
         List<MateriaPrima> list = new ArrayList();
         

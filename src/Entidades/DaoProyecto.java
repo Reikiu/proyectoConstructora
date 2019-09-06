@@ -17,7 +17,7 @@ public class DaoProyecto extends Conexion {
         
         try{
             this.conectar();
-            String sql = "Select * from usuario";
+            String sql = "Select * from proyecto";
             PreparedStatement pst= this.getCon().prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next()){

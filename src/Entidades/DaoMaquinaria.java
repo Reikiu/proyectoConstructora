@@ -13,18 +13,18 @@ import javax.swing.JOptionPane;
  */
 public class DaoMaquinaria extends Conexion{
 
-    public List<Maquinaria> mostrarProyecto() throws Exception{
+    public List<Maquinaria> mostrarMaquinaria() throws Exception{
         ResultSet rs;
         List<Maquinaria> lis = new ArrayList();
         
         try{
             this.conectar();
-            String sql = "Select * from usuario";
+            String sql = "Select * from maquinaria";
             PreparedStatement pst= this.getCon().prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next()){
                 Maquinaria ma = new Maquinaria();
-                ma.setIdMaquinaria(rs.getInt("idMateria"));
+                ma.setIdMaquinaria(rs.getInt("idMaquinaria"));
                 ma.setNombreMaquinaria(rs.getString("nombreMaquinaria"));
                 ma.setTipoMaquinaria(rs.getString("tipoMaquinaria"));
                 ma.setModelo(rs.getString("modelo"));

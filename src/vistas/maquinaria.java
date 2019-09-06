@@ -5,6 +5,12 @@
  */
 package vistas;
 
+import Entidades.DaoMaquinaria;
+import Entidades.Maquinaria;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HP
@@ -16,6 +22,36 @@ public class maquinaria extends javax.swing.JInternalFrame {
      */
     public maquinaria() {
         initComponents();
+        tablaMaquinaria();
+    }
+    Maquinaria ma = new Maquinaria();
+    DaoMaquinaria daoma = new DaoMaquinaria();
+
+    public void tablaMaquinaria() {
+        String[] columnas = {"Id", "Nombre", "Tipo", "Modelo", "Año", 
+            "Estado"};
+        Object[] obj = new Object[6];
+        DefaultTableModel tabla = new DefaultTableModel(null, columnas);
+        List ls;
+        try {
+            ls = daoma.mostrarMaquinaria();
+            for (int i = 0; i < ls.size(); i++) {
+                ma = (Maquinaria) ls.get(i);
+                obj[0] = ma.getIdMaquinaria();
+                obj[1] = ma.getNombreMaquinaria();
+                obj[2] = ma.getTipoMaquinaria();
+                obj[3] = ma.getModelo();
+                obj[4] = ma.getAnioAdquirido();
+                obj[5] = ma.getEstado();
+                
+                tabla.addRow(obj);
+                //JOptionPane.showMessageDialog(null, "Ok");
+            }
+            ls = daoma.mostrarMaquinaria();
+            this.tablaMaquinaria.setModel(tabla);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No ok " + e.toString());
+        }
     }
 
     /**
