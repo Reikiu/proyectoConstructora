@@ -37,8 +37,8 @@ public class proyecto extends javax.swing.JInternalFrame {
             for (int i = 0; i < ls.size(); i++) {
                 pro = (Proyecto) ls.get(i);
                 obj[0] = pro.getIdProyecto();
-                obj[1] = pro.getNombre();
-                obj[2] = pro.getIdCliente();
+                obj[1] = pro.getIdCliente();
+                obj[2] = pro.getNombre();
                 obj[3] = pro.getFactura();
                 obj[4] = pro.getEstadoProyecto();
                 obj[5] = pro.getFechaInicio();
@@ -383,6 +383,11 @@ public class proyecto extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProyectoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaProyecto);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -430,6 +435,8 @@ public class proyecto extends javax.swing.JInternalFrame {
             modificar();
         } catch (SQLException ex) {
             Logger.getLogger(proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(proyecto.class.getName()).log(Level.SEVERE, null, ex);
         }
         tablaProyecto();
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -447,6 +454,33 @@ public class proyecto extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void tablaProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProyectoMouseClicked
+        llenarTabla();
+    }//GEN-LAST:event_tablaProyectoMouseClicked
+
+    
+    
+    public void llenarTabla() {
+        try {
+            int fila = this.tablaProyecto.getSelectedRow();
+            pro.setIdProyecto((int) this.tablaProyecto.getValueAt(fila, 0));
+            this.txtIdCliente.setSelectedIndex((int) this.tablaProyecto.getValueAt(fila, 1));
+            this.txtNombre.setText((String) this.tablaProyecto.getValueAt(fila, 2));
+            this.txtFactura.setText((String) this.tablaProyecto.getValueAt(fila, 3));
+            this.txtEstado.setText((String) this.tablaProyecto.getValueAt(fila, 4));
+            this.txtFechaIN.setText((String) this.tablaProyecto.getValueAt(fila, 5));
+            this.txtFechaFin.setText((String) this.tablaProyecto.getValueAt(fila, 6));
+            this.txtMontoEmpleado.setText((String) this.tablaProyecto.getValueAt(fila, 7));
+            this.MontoMaquinaria.setText((String) this.tablaProyecto.getValueAt(fila, 8));
+            this.txtMatUti.setSelectedIndex((int) this.tablaProyecto.getValueAt(fila, 9));
+            this.txtMontoMat.setText((String) this.tablaProyecto.getValueAt(fila, 10));
+            this.txtMontoTotal.setText((String) this.tablaProyecto.getValueAt(fila, 11));
+            this.txtDireccion.setText((String) this.tablaProyecto.getValueAt(fila, 12));
+        } catch (Exception e) {
+
+        }
+    }
+    
     public void crearProyecto() throws Exception {
         pro.setIdCliente(this.txtIdCliente.getSelectedIndex());
         pro.setNombre(this.txtNombre.getText());
@@ -481,7 +515,7 @@ public class proyecto extends javax.swing.JInternalFrame {
         this.txtDireccion.setText("");
     }
     
-    public void modificar() throws SQLException {
+    public void modificar() throws SQLException, Exception {
         pro.setIdCliente(this.txtIdCliente.getSelectedIndex());
         pro.setNombre(this.txtNombre.getText());
         pro.setFactura(Integer.parseInt(this.txtFactura.getText()));
