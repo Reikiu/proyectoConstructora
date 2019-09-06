@@ -99,9 +99,12 @@ public class DaoUsuario extends Conexion {
     }
     public void eliminarUsuario(Usuario us){
         try{
-            String sql = "Delete from usuario where id=?";
+            this.conectar();
+            String sql = "Delete from usuario where idUsuario=?";
             PreparedStatement pst = this.getCon().prepareStatement(sql);
             pst.setInt(1, us.getIdUsuario());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Oc");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al borrar "+e.toString()+" pendejo");
         }

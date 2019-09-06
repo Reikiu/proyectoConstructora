@@ -29,7 +29,7 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
     }
     Usuario us = new Usuario();
     DaoUsuario daous = new DaoUsuario();
-    
+
     public void tablaUsuario() {
         String[] columnas = {"Id", "Nombre", "Contraseña", "Tipo"};
         Object[] obj = new Object[4];
@@ -307,24 +307,25 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
         try {
             eliminar();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error "+ex.toString()+" pendejo");
+            JOptionPane.showMessageDialog(null, "Error " + ex.toString() + " pendejo");
         }
         tablaUsuario();
     }//GEN-LAST:event_btnEliminarActionPerformed
-    
+
     public void modificar() throws SQLException {
         us.setUsuario(this.txtNombre.getText());
         us.setPassword(this.txtPassword.getText());
         us.setTipoUsuario(this.cmbTipousu.getSelectedIndex());
         daous.modificarUsuario(us);
     }
-    
+
     public void eliminar() throws SQLException {
-        us.setIdUsuario((int) this.tablaUsuario.getValueAt(this.tablaUsuario.getSelectedRow(), 0));
-        daous.modificarUsuario(us);
+        int fila = this.tablaUsuario.getSelectedRow();
+        us.setIdUsuario((int) this.tablaUsuario.getValueAt(fila, 0));
+        daous.eliminarUsuario(us);
         limpiar();
     }
-    
+
     public void llenarTabla() {
         try {
             int fila = this.tablaUsuario.getSelectedRow();
@@ -333,19 +334,19 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
             this.txtPassword.setText((String) this.tablaUsuario.getValueAt(fila, 2));
             this.cmbTipousu.setSelectedIndex((int) this.tablaUsuario.getValueAt(fila, 3));
         } catch (Exception e) {
-            
+
         }
     }
-    
+
     public void crearUsuario() throws Exception {
         us.setUsuario(this.txtNombre.getText());
         us.setPassword(this.txtPassword.getText());
         us.setTipoUsuario(this.cmbTipousu.getSelectedIndex());
         daous.insertarUsuario(us);
         limpiar();
-        
+
     }
-    
+
     public void limpiar() {
         this.txtNombre.setText("");
         this.txtPassword.setText("");
