@@ -69,7 +69,7 @@ public class DaoCliente extends Conexion{
             JOptionPane.showMessageDialog(null, "Error al intentar modificar" + e.toString());
         }
     }
-    
+    //
     public void eliminarCliente(Cliente cli) throws Exception {
         int var = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el "
                 + "registro?", "Confirmacion", JOptionPane.YES_NO_OPTION,

@@ -52,7 +52,7 @@ public class cliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No ok " + e.toString());
         }
     }
-    
+    //
     public void crearCliente() throws Exception {
         cli.setNombre(this.txtNombre.getText());
         cli.setDireccion(this.txtDireccion.getText());

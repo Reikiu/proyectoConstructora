@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Entidades;
-
 /**
  * Clase: Cliente. (Para registrar Cliente)
  * Fecha: 03/09/2019
