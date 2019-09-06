@@ -7,6 +7,7 @@ package vistas;
 
 import Entidades.DaoUsuario;
 import Entidades.Usuario;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,27 +29,27 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
     }
     Usuario us = new Usuario();
     DaoUsuario daous = new DaoUsuario();
-    
-    public void tablaUsuario(){
-        String [] columnas = {"Id","Nombre","Contraseña","Tipo"};
+
+    public void tablaUsuario() {
+        String[] columnas = {"Id", "Nombre", "Contraseña", "Tipo"};
         Object[] obj = new Object[4];
         DefaultTableModel tabla = new DefaultTableModel(null, columnas);
         List ls;
-        try{
+        try {
             ls = daous.mostrarUsuario();
-            for(int i = 0; i<ls.size();i++){
+            for (int i = 0; i < ls.size(); i++) {
                 us = (Usuario) ls.get(i);
-                obj[0]=us.getIdUsuario();
-                obj[1]=us.getUsuario();
-                obj[2]=us.getPassword();
-                obj[3]=us.getTipoUsuario();
+                obj[0] = us.getIdUsuario();
+                obj[1] = us.getUsuario();
+                obj[2] = us.getPassword();
+                obj[3] = us.getTipoUsuario();
                 tabla.addRow(obj);
                 //JOptionPane.showMessageDialog(null, "Ok");
             }
-            ls= daous.mostrarUsuario();
+            ls = daous.mostrarUsuario();
             this.tablaUsuario.setModel(tabla);
-        }catch(Exception e){
-           JOptionPane.showMessageDialog(null, "No ok "+e.toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No ok " + e.toString());
         }
     }
 
@@ -108,9 +109,19 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
 
         btnModificar.setText("Modificar");
         btnModificar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -128,34 +139,33 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(36, 36, 36)
-                        .addComponent(txtPassword))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnGuardar)
                             .addComponent(btnEliminar))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnModificar)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(btnModificar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbTipousu, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(46, 46, 46)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbTipousu, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabel2)
+                                .addGap(36, 36, 36)
+                                .addComponent(txtPassword)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,6 +206,11 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaUsuario);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -267,7 +282,7 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
             crearUsuario();
             tablaUsuario();
         } catch (Exception e) {
-          //  JOptionPane.showMessageDialog(null, "Error "+e.toString());
+            //  JOptionPane.showMessageDialog(null, "Error "+e.toString());
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -275,16 +290,64 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        try {
+            modificar();
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tablaUsuario();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void tablaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuarioMouseClicked
+        llenarTabla();
+    }//GEN-LAST:event_tablaUsuarioMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            eliminar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error " + ex.toString() + " pendejo");
+        }
+        tablaUsuario();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    public void modificar() throws SQLException {
+        us.setUsuario(this.txtNombre.getText());
+        us.setPassword(this.txtPassword.getText());
+        us.setTipoUsuario(this.cmbTipousu.getSelectedIndex());
+        daous.modificarUsuario(us);
+    }
+
+    public void eliminar() throws SQLException {
+        int fila = this.tablaUsuario.getSelectedRow();
+        us.setIdUsuario((int) this.tablaUsuario.getValueAt(fila, 0));
+        daous.eliminarUsuario(us);
+        limpiar();
+    }
+
+    public void llenarTabla() {
+        try {
+            int fila = this.tablaUsuario.getSelectedRow();
+            us.setIdUsuario((int) this.tablaUsuario.getValueAt(fila, 0));
+            this.txtNombre.setText((String) this.tablaUsuario.getValueAt(fila, 1));
+            this.txtPassword.setText((String) this.tablaUsuario.getValueAt(fila, 2));
+            this.cmbTipousu.setSelectedIndex((int) this.tablaUsuario.getValueAt(fila, 3));
+        } catch (Exception e) {
+
+        }
+    }
+
     public void crearUsuario() throws Exception {
         us.setUsuario(this.txtNombre.getText());
         us.setPassword(this.txtPassword.getText());
         us.setTipoUsuario(this.cmbTipousu.getSelectedIndex());
         daous.insertarUsuario(us);
         limpiar();
-        
+
     }
-    
-    public void limpiar(){
+
+    public void limpiar() {
         this.txtNombre.setText("");
         this.txtPassword.setText("");
         this.cmbTipousu.setSelectedIndex(0);

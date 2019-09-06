@@ -70,4 +70,33 @@ public class DaoUsuario extends Conexion {
             JOptionPane.showMessageDialog(null, "Error " + e.toString());
         }
     }
+    
+    public void modificarUsuario(Usuario us) throws SQLException {
+        try {
+            this.conectar();
+            
+                String sql = "Update usuario set usuario=?,password=?,idTipo=? where idUsuario=?";
+            PreparedStatement pst = this.getCon().prepareStatement(sql);
+            pst.setInt(4, us.getIdUsuario());
+            pst.setString(1, us.getUsuario());
+            pst.setString(2, us.getPassword());
+            pst.setInt(3, us.getTipoUsuario());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Oc");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.toString());
+        }
+    }
+    public void eliminarUsuario(Usuario us){
+        try{
+            this.conectar();
+            String sql = "Delete from usuario where idUsuario=?";
+            PreparedStatement pst = this.getCon().prepareStatement(sql);
+            pst.setInt(1, us.getIdUsuario());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Oc");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al borrar "+e.toString()+" pendejo");
+        }
+    }
 }
