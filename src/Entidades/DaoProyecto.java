@@ -47,9 +47,20 @@ public class DaoProyecto extends Conexion {
     public void insertarProyeto(Proyecto pro) throws Exception {
         try {
             this.conectar();
+            ResultSet rs1;
+            String sql1 = "Select * from proyecto";
+            PreparedStatement pst1 = this.getCon().prepareStatement(sql1);
+            rs1 = pst1.executeQuery();
+            int i = 0;
+            while (rs1.next()) {
+                if (rs1.getInt("idProyecto") > i) {
+                    i = rs1.getInt("idProyecto");
+                }
+            }
+            i = i + 1;
             String sql = "INSERT into proyecto values (?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setInt(1, pro.getIdProyecto());
+            pre.setInt(1, i);
             pre.setInt(2, pro.getIdCliente());
             pre.setString(3, pro.getNombre());
             pre.setInt(4, pro.getFactura());

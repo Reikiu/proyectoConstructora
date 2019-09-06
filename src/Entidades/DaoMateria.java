@@ -19,7 +19,7 @@ public class DaoMateria extends Conexion {
         
         try{
             this.conectar();
-            String sql = "Select * from usuario";
+            String sql = "Select * from materiaPrima";
             PreparedStatement pst= this.getCon().prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next()){
@@ -42,9 +42,20 @@ public class DaoMateria extends Conexion {
     public void insertarMateria(MateriaPrima mat) throws Exception {
         try {
             this.conectar();
+            ResultSet rs1;
+            String sql1 = "Select * from materiaprima";
+            PreparedStatement pst1 = this.getCon().prepareStatement(sql1);
+            rs1 = pst1.executeQuery();
+            int i = 0;
+            while (rs1.next()) {
+                if (rs1.getInt("idMaterial") > i) {
+                    i = rs1.getInt("idMaterial");
+                }
+            }
+            i = i + 1;
             String sql = "INSERT into materiaprima values (?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setInt(1, mat.getIdMateria());
+            pre.setInt(1, i);
             pre.setString(2, mat.getMatUsado());
             pre.setString(3, mat.getNombre());
             pre.setDouble(4, mat.getPrecioUnitario());
